@@ -52,7 +52,7 @@ class Button:
 		self.img=None
 		return False
 
-	def renderButton(self):
+	def render(self):
 		#renders button to screen, returns true on success, if button is inactive does nothing and returns false
 		if not self.active or self.img==None:
 			return False
