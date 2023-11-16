@@ -16,6 +16,7 @@ class MainGame:
     clickCoolDownTimePassed=0
     font=None #font for rendering numbers to screen
     openCount=0
+    gameOver=False
 
     def openTile(self,x,y):
         #sets tile at x,y position to isOpen if it exists
