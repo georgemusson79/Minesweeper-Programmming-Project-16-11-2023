@@ -33,6 +33,10 @@ The Aim of this project is to:
 
 ## Implementation
 ### Testing
+#### <u>Button class</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
 |----------------------|----------------------------|-----------------|----------------|
-
+|Button.setImg() | If imgPath is valid, load the image and  save it to button.img, return True, if img is equal to None or a blank string return false, if the file was unable to load/invalid path, raise an Exception, tell the user that files are missing and close the program | if path is invalid exception is raised however program will close without informing the user | Add that functionality to the button and work on rendering the button to the screen |
+| Button.render() | When called button is rendered when surface.update() is called assuming button.active is True, button is scaled and rendered on screen according to button. x,y,w,h values| What is stated in 'What is supposed to happen' | Write code for click functionality|
+|Button.isColliding | Returns true when function is called while cursor is inside the button, otherwise returns false | As stated in 'whats supposed to happen' | N/A |
+|Button.leftClick, Button.rightClick and Button.handleClick | leftClick and rightClick will check if there is a left click or right click function then if there are arguments, run with the arguments passed, if no right click or left click function has been specified do nothing, handleclick combines this with button.isColliding: it will run the related function if the user clicks and the cursor is inside the button, otherwise do nothing | As stated in 'whats supposed to happen ' | Button is complete, move on to making the main menu |
