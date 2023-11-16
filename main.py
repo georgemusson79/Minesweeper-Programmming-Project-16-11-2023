@@ -1,7 +1,7 @@
 #main.py
 import pygame
 from MainGame import MainGame
-from gameState import GameStates, getGameState
+from gameState import GameStates
 import gameState
 from MainMenu import MainMenu
 

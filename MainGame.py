@@ -85,13 +85,13 @@ class MainGame:
        
         
 
-    def isOnBoard(self,x,y):
+    def isOnBoard(self,x:int,y:int):
         #checks if a position is on the board, if so returns true, otherwise returns false
         if x>=0 and x<self.boardW and y>=0 and y<self.boardH:
             return True
         return False
 
-    def setBoardDims(self,x,y,w,h):
+    def setBoardDims(self,x:int,y:int,w:int,h:int):
         #used to set the board position for rendering to the screen
         #takes x and y values and width and height values, all ints
         #these represent the amount of pixels the board will take up on the screen
@@ -103,7 +103,7 @@ class MainGame:
         self.flagTexture=pygame.image.load("assets\\img\\flag.png")
         self.flagTexture=pygame.transform.scale(self.flagTexture,(w/self.boardW,h/self.boardH))
 
-    def generateBoard(self,width,height,mineCount,renderDims):
+    def generateBoard(self,width:int,height:int,mineCount:int,renderDims:pygame.Rect):
         #generates board that will be played on, parameters are board width, height and number of mines, all ints, returns void
         #also takes a pygame.Rect resembling the rendering dimensions of the board on the screen in pixels
         #exceptions to be raised in case board parameters are invalid
@@ -133,7 +133,7 @@ class MainGame:
 
    
 
-    def getMineCountAroundPt(self,posX,posY):
+    def getMineCountAroundPt(self,posX:int,posY:int):
         #returns number of tiles around a point whose isMine is set to True
         #does not include the point itself if it is a mine
         #takes x and y pos as ints

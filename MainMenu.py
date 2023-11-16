@@ -12,7 +12,7 @@ class MainMenu:
 
 
 
-    def __init__(self,surface):
+    def __init__(self,surface:pygame.Surface):
         #initialises variables, loads background and scales to fit window,loads buttons into buttons array
         self.surface=surface
         self.bg=pygame.image.load("assets//img//MainMenu_bg.jpg")

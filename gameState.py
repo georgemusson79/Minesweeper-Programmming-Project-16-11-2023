@@ -5,7 +5,7 @@ class GameStates(Enum):
 global gameState
 gameState=None
 
-def setGameState(state):
+def setGameState(state:GameStates):
     #used to indicate which part of the code is running, holds a value from the GameStates enum
     global gameState
     gameState=state

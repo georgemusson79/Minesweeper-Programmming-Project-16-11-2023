@@ -38,13 +38,13 @@ class Button:
 			else:
 				self.rightClickFunc(self.rcArgs)
 
-	def isColliding(self,x,y):
+	def isColliding(self,x:int,y:int):
 		#takes x and y coordinate for input, check if position collides with button, returns true if so, otherwise returns false
 		if (x>=self.x and x<self.x+self.w) and (y>=self.y and y<self.y+self.h):
 			return True
 		return False
 
-	def setImg(self,imgPath):
+	def setImg(self,imgPath:str):
 		#sets button image to be rendered to the screen, takes a string, returns True on success otherwise returns False and sets self.img to None
 		if imgPath!=None or imgPath!="":
 			self.img=pygame.image.load(imgPath)
@@ -62,7 +62,7 @@ class Button:
 		return True
 	
 		
-	def __init__(self, surface, x, y, w, h, imgPath=None, leftClickFunc=None, rightClickFunc=None, active=True, lcArgs=None, rcArgs=None):
+	def __init__(self, surface:pygame.Surface, x:int, y:int, w:int, h:int, imgPath:str=None, leftClickFunc=None, rightClickFunc=None, active:bool=True, lcArgs=None, rcArgs=None):
 		#button constructor, arguments are: Surface object for rendering, x and y coordinates to place on screen in pixels, width and height in pixels
 		#string path to image to be used for button, functions to be used when the button is left clicked and right clicked, bool to determine if button
 		#should be useable and left click and right click arguments of any datatype
