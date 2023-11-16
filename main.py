@@ -22,7 +22,7 @@ def main():
     print(pygame.get_error())
     mainMenu=MainMenu(surface)
     mainGame=MainGame(surface)
-    mainGame.generateBoard(15,15,60,pygame.Rect(0,0,600,600))
+    mainGame.generateBoard(15,15,40,pygame.Rect(0,0,600,600))
     
     while running:
         surface.fill((0,0,0)) #clear the screen

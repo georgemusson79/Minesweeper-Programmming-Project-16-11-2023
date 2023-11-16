@@ -121,7 +121,6 @@ class MainGame:
         self.mineCount=mineCount
         self.setBoardDims(renderDims.x,renderDims.y,renderDims.w,renderDims.h)
         self.board=[[Tile() for y in range(height)]for x in range(width)]
-        self.scatterMines()
         self.boardGenerated=True
 
     def update(self):
