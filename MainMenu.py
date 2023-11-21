@@ -25,7 +25,7 @@ class MainMenu:
         self.surface.blit(self.bg,(0,0))
         for button in self.buttons:
             button.render()
-        pass
+   
 
     def update(self):
         #called every frame if MainMenu is active
