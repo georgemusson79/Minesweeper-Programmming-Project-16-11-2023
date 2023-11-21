@@ -24,13 +24,19 @@ The Aim of this project is to:
 
 
 ## Design
-### Main Loop
+### Use Case Diagrams
+#### <u>Main Loop</u>
 ![Main Loop](use%20case%20diagrams/mainLoop.png)
 - Main Loop diagram showing the control flow of the game
 - `MainMenu`, `AttrSelectionMenu` and `MainGame` are all separate classes which all contain the loop function which should be called every frame
 - The loop function to be called is determined by the gameState variable
 - These classes should be independent from each other, if they need to share data, the data should be moved to a shared globals.py file, such as gamestate
 
+
+
+### Class Diagrams
+![Main Menu](use%20case%20diagrams/MainMenu%20Class%20diagram.png)
+![Button](use%20case%20diagrams/Button%20Class%20diagram.png)
 
 ## Implementation
 ### Testing
