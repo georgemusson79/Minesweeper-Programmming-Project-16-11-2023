@@ -21,7 +21,7 @@ class Button:
 		if self.isColliding(x,y) and self.active:
 			if btn[0]:
 				self.onLeftClick()
-			if btn[1]:
+			if btn[2]:
 				self.onRightClick()
 	def onLeftClick(self):
 		#calls leftClickFunc, passing lcArgs if any data is provided, returns 

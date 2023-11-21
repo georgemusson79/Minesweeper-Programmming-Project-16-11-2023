@@ -3,6 +3,10 @@ from button import Button
 from Tile import Tile
 from BoardException import BoardException
 import random
+def test():
+    print("output")
+
+
 class MainGame:
     board=None
     boardGenerated=False
@@ -18,6 +22,7 @@ class MainGame:
     openCount=0
     gameOver=False
     buttons=[]
+
 
     def openTile(self,x,y):
         #sets tile at x,y position to isOpen if it exists
@@ -37,6 +42,7 @@ class MainGame:
     def __init__(self,surface):
         self.surface=surface
         self.font=pygame.font.Font(None,64)
+        self.buttons=[Button(surface,0,500,300,100,"assets/img/button1.png",rightClickFunc=test)]
 
     def scatterMines(self):
         #places mines randomly around the board where isOpen=false, returns void
@@ -157,7 +163,7 @@ class MainGame:
         for x in range(self.boardW):
             for y in range(self.boardH):
                 xPos=(x*tileWidth)+self.boardDims.x
-                yPos=(y*tileHeight)+self.boardDims.x
+                yPos=(y*tileHeight)+self.boardDims.y
                 r=pygame.Rect(xPos,yPos,tileWidth,tileHeight) #tile rendering rectangle
 
                 #make checkerboard pattern
