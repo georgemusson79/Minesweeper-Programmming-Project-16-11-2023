@@ -1,8 +1,8 @@
 import pygame
-import random
-import math
+from button import Button
 from Tile import Tile
 from BoardException import BoardException
+import random
 class MainGame:
     board=None
     boardGenerated=False
@@ -17,6 +17,7 @@ class MainGame:
     font=None #font for rendering numbers to screen
     openCount=0
     gameOver=False
+    buttons=[]
 
     def openTile(self,x,y):
         #sets tile at x,y position to isOpen if it exists
@@ -130,7 +131,9 @@ class MainGame:
             return
         self.renderBoard()
         self.boardHandleClicks()
-
+        for button in self.buttons:
+            button.handleClick()
+            button.render()
    
 
     def getMineCountAroundPt(self,posX:int,posY:int):
