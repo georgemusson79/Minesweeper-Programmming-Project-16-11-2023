@@ -37,7 +37,7 @@ The Aim of this project is to:
 ### Class Diagrams
 ![Main Menu](use%20case%20diagrams/MainMenu%20Class%20diagram.png)
 ![Button](use%20case%20diagrams/Button%20Class%20diagram.png)
-
+![GameSetup](use%20case%20diagrams/GameSetup%20Class%20diagram.png)
 ## Implementation
 ### Testing
 #### <u>Button class</u>
@@ -68,3 +68,18 @@ The Aim of this project is to:
 |Player left clicks or right clicks off board but on screen| If nothing is pressed, do nothing, if there is a button on the screen handle button click| Buttons can't be added into the mainGame class yet so they dont work| Created an array called buttons, this list is iterated over in update() and button.render and button.handle clicks() so buttons should work|
 |Do buttons in MainGame work| Button should render to screen,Left click and right click button functions should work without affecting the board|Test button was added in `MainGame.__init__` with the line `self.buttons=[Button(surface,0,500,300,100,"assets/img/button1.png",leftClickFunc=test)]` adding a button the bottom left of the screen with a left click test function that would print a line to console, this worked however right click didnt work |There was an issue in button.handleClick at the line `if btn[2]: self.onRightClick()` this was set to `if btn[1]: self.onRightClick()` which actually checks for middle click, not right click|
 |Testing right click in MainGame| When button in MainGame is right clicked test function should run once per right click this is the code for the button: `self.buttons=[Button(surface,0,500,300,100,"assets/img/button1.png",rightClickFunc=test)]`| Test was successful, test function successfully outputed to console once per right click| N/A|
+|
+
+#### gameState
+| What is Being Tested | What is supposed to happen | What did Happen | What to do now |
+|----------------------|----------------------------|-----------------|----------------|
+|Can gameState be updated from another .py file| gameState can be updated in MainMenu on start button click| gameState is successfully updated| N/A|
+#### <u>Main Loop</u>
+| What is Being Tested | What is supposed to happen | What did Happen | What to do now |
+|----------------------|----------------------------|-----------------|----------------|
+|Will window stay open| Main loop keeps running while running is true, constantly setting the main surface to black and rendering the surface to the screen| As stated in "Whats supposed to happen"|Handle user input
+|Does exit button work| Clicking on the x in the top right closes the program| As stated in "whats supposed to happen"| Test game states|
+|Will changing the gameState load the corect screen| Setting to mainMenu will load the mainMenu screen and allow the user to click the buttons, loading the MainGame will load the MainGame screen and allow user to play the game etc, this will work no matter when you change the gameState| What was stated in "whats supposed to happen" as long as the specified class is initialised, which happens at the start of the programm| Main Loop is ready, continue to add other game state classes
+#### <u>GameSetup</u>
+| What is Being Tested | What is supposed to happen | What did Happen | What to do now |
+|----------------------|----------------------------|-----------------|----------------|
