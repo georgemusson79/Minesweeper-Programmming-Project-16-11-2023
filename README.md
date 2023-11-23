@@ -84,3 +84,9 @@ The Aim of this project is to:
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
 |----------------------|----------------------------|-----------------|----------------|
 | Rendering to screen|Test background and submit button renders to screen, button renders in the bottom middle|Background renders but button renders to the right|`buttonX=self.surface.get_width()/2+(buttonWidth/2)` was changed to `buttonX=self.surface.get_width()/2-(buttonWidth/2)` now button renders in the correct place, text fields now need to be added|
+
+#### <u>TextField</u>
+| What is Being Tested | What is supposed to happen | What did Happen | What to do now |
+|----------------------|----------------------------|-----------------|----------------|
+|Render to screen|Box gets rendered to screen based on x,y,w,h values| As stated in "what is supposed to happen"| Allow for text to be added and rendered|
+|Allow for text to be entered into box|If the user has their cursor over the box they can enter text up to the maxCharlimit, only characters that are allowed will be entered otherwise do nothing|Exception raised at line `for key,state in enumerate(keys):` in `TextField.py` at `handleKeys()` as `keys=pygame.key.get_pressed()` can't be enumerated over|

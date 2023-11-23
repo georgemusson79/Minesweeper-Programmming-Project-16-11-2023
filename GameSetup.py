@@ -1,6 +1,6 @@
 import pygame
 from button import Button
-
+from TextField import TextField
 class GameSetup:
     surface=None
     textFieldList=[]
@@ -20,17 +20,21 @@ class GameSetup:
         self.buttons=[Button(self.surface,buttonX,buttonY,buttonWidth,buttonHeight,"assets/img/submitButton.png",self.submit)]
         self.bg=pygame.image.load("assets//img//GameSetup.png")
         self.bg=pygame.transform.scale(self.bg,(self.surface.get_width(),self.surface.get_height()))
-        
+        self.textFieldList=[TextField(surface,buttonX,buttonY,buttonWidth,buttonHeight,8,(255,255,255))]
         
     def render(self):
         self.surface.blit(self.bg,(0,0))
         for button in self.buttons:
             button.render()
+        for textField in self.textFieldList:
+            textField.render()
             
     def update(self):
         self.render()
         for button in self.buttons:
             button.handleClick()
+        for textField in self.textFieldList:
+            textField.handleInput()
     def submit(self):
         pass
 
