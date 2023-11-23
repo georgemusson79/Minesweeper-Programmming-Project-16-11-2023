@@ -15,6 +15,8 @@ class TextField:
     maxLength: int
     allowedCharacters: str
     timeSinceLastPressed=0
+    isFocused=False
+    active=True
     def __init__(self,surface:pygame.Surface,x: int,y:int ,w:int,h:int,maxLength:int,color:pygame.Color=pygame.Color(255,255,255),textColor:pygame.Color=pygame.Color(0,0,0),allowedCharacters:str=string.printable,text=""):
         self.surface=surface
         self.x=x
@@ -28,6 +30,24 @@ class TextField:
         self.textColor=textColor
         self.maxLength=maxLength
 
+
+    def isColliding(self,x:int,y:int):
+        #takes x and y coordinate for input, check if position collides with textField, returns true if so, otherwise returns false
+        if (x>=self.x and x<self.x+self.w) and (y>=self.y and y<self.y+self.h):
+            return True
+        return False
+    def checkIfClicked(self):
+        #checks if the user has clicked on the text box, if so set isFocused to true otherwise set to false
+        if not self.active:
+            return
+        x,y=pygame.mouse.get_pos()
+        btn=pygame.mouse.get_pressed()
+        if btn[0]:
+            if self.isColliding(x,y) and self.active:
+                self.isFocused=True
+            else:
+                self.isFocused=False
+
     def render(self):
         r=pygame.Rect(self.x,self.y,self.w,self.h)
         pygame.draw.rect(self.surface,self.color,r) #draw background to screen
@@ -37,6 +57,9 @@ class TextField:
         imgText=pygame.transform.scale(imgText,(imgTextWidth,self.h)) #height will be the same size as textbox height
         self.surface.blit(imgText,(r.x,r.y))
     def handleInput(self):
+        #checks if user has typed anything if the textbox is focused and active and enter it into the text field otherwise return nothing
+        if not self.active or not self.isFocused:
+            return
         keys=pygame.key.get_pressed()
         if time.time()-self.timeSinceLastPressed<0.1: #checks if time since a key was last pressed is greater than 100ms otherwise returns without checking key presses
             return

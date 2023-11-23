@@ -34,6 +34,7 @@ class GameSetup:
         for button in self.buttons:
             button.handleClick()
         for textField in self.textFieldList:
+            textField.checkIfClicked()
             textField.handleInput()
     def submit(self):
         pass
