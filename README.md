@@ -70,7 +70,7 @@ The Aim of this project is to:
 |Testing right click in MainGame| When button in MainGame is right clicked test function should run once per right click this is the code for the button: `self.buttons=[Button(surface,0,500,300,100,"assets/img/button1.png",rightClickFunc=test)]`| Test was successful, test function successfully outputed to console once per right click| N/A|
 |
 
-#### gameState
+#### <u>gameState</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
 |----------------------|----------------------------|-----------------|----------------|
 |Can gameState be updated from another .py file| gameState can be updated in MainMenu on start button click| gameState is successfully updated| N/A|
@@ -83,3 +83,4 @@ The Aim of this project is to:
 #### <u>GameSetup</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
 |----------------------|----------------------------|-----------------|----------------|
+| Rendering to screen|Test background and submit button renders to screen, button renders in the bottom middle|Background renders but button renders to the right|`buttonX=self.surface.get_width()/2+(buttonWidth/2)` was changed to `buttonX=self.surface.get_width()/2-(buttonWidth/2)` now button renders in the correct place, text fields now need to be added|

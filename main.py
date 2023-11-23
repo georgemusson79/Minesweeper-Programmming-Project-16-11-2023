@@ -1,5 +1,6 @@
 #main.py
 import pygame
+from GameSetup import GameSetup
 from MainGame import MainGame
 from gameState import GameStates
 import gameState
@@ -7,9 +8,9 @@ from MainMenu import MainMenu
 
 
 global WINDOW_WIDTH
-WINDOW_WIDTH=600
+WINDOW_WIDTH=1200
 global WINDOW_HEIGHT
-WINDOW_HEIGHT=600
+WINDOW_HEIGHT=900
 
 
 
@@ -22,6 +23,7 @@ def main():
     print(pygame.get_error())
     mainMenu=MainMenu(surface)
     mainGame=MainGame(surface)
+    gameSetup=GameSetup(surface)
     mainGame.generateBoard(15,15,40,pygame.Rect(0,0,500,500))
     
     while running:
@@ -32,6 +34,9 @@ def main():
                 mainMenu.update()
             case GameStates.MAIN_GAME:
                 mainGame.update()
+            case GameStates.GAME_SETUP:
+                gameSetup.update()
+
 
    
         for event in pygame.event.get():

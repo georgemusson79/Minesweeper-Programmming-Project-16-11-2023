@@ -16,10 +16,15 @@ class MainMenu:
         #initialises variables, loads background and scales to fit window,loads buttons into buttons array
         self.surface=surface
         self.bg=pygame.image.load("assets//img//MainMenu_bg.jpg")
-        self.bg=pygame.transform.scale(self.bg,(self.surface.get_width(),surface.get_height()))
+        self.bg=pygame.transform.scale(self.bg,(self.surface.get_width(),self.surface.get_height()))
         print(pygame.get_error())
         #main menu constructor, take Surface object as argument for rendering to screen
-        self.buttons=[Button(surface,100,100,300,100,"assets//img//button1.png",gameState.setGameState,lcArgs=GameStates.MAIN_GAME)]
+        #set button dimensions for start button
+        buttonWidth=self.surface.get_width()/3
+        buttonHeight=self.surface.get_height()/8
+        buttonX=self.surface.get_width()/2-(buttonWidth/2)
+        buttonY=self.surface.get_height()*3/8
+        self.buttons=[Button(surface,buttonX,buttonY,buttonWidth,buttonHeight,"assets//img//button1.png",gameState.setGameState,lcArgs=GameStates.GAME_SETUP)]
     def render(self):
         #renders the MainMenu to the screen returns nothing
         self.surface.blit(self.bg,(0,0))
