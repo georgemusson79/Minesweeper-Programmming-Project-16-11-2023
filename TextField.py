@@ -16,7 +16,7 @@ class TextField:
     def __init__(self,surface:pygame.Surface,x: int,y:int ,w:int,h:int,maxLength:int,color:pygame.Color=pygame.Color(255,255,255),textColor:pygame.Color=pygame.Color(0,0,0),allowedCharacters:str=string.printable,text=""):
         self.surface=surface
         self.x=x
-        self.text=""
+        self.text="bruh"
         self.y=y
         self.w=w
         self.h=h
@@ -36,12 +36,14 @@ class TextField:
         self.surface.blit(imgText,(r.x,r.y))
     def handleInput(self):
         keys=pygame.key.get_pressed()
-        for key,state in enumerate(keys):
-            if state:
+        for key in range(0,255):
+            if keys[key]:
+                
                 if key==pygame.K_BACKSPACE:
+                    print("bruh")
                     if len(self.text)>0:
                         self.text=self.text[:-1]
-                elif key in self.allowedCharacters and len(self.text)<self.maxLength:
+                elif pygame.key.name(key) in self.allowedCharacters and len(self.text)<self.maxLength:
                     self.text+=pygame.key.name(key)
 
                 
