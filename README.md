@@ -35,9 +35,17 @@ The Aim of this project is to:
 
 
 ### Class Diagrams
+
 ![Main Menu](use%20case%20diagrams/MainMenu%20Class%20diagram.png)
+- Main menu is the first state of the game and allows the user to play and load a game
 ![Button](use%20case%20diagrams/Button%20Class%20diagram.png)
+- Button provides pictures for the user to click on which will run a function
 ![GameSetup](use%20case%20diagrams/GameSetup%20Class%20diagram.png)
+- GameSetup allows for the user to set the attributes for the game board
+![Label](use%20case%20diagrams/Label%20Class%20diagram.png)
+- Label allows for rendering text to the screen
+![TextField](use%20case%20diagrams/Textfield%20Class%20diagram.png)
+- TextField allows user to input text
 ## Implementation
 ### Testing
 #### <u>Button class</u>

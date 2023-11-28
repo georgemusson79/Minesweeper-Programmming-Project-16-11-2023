@@ -20,7 +20,7 @@ class GameSetup:
         self.buttons=[Button(self.surface,buttonX,buttonY,buttonWidth,buttonHeight,"assets/img/submitButton.png",self.submit)]
         self.bg=pygame.image.load("assets//img//GameSetup.png")
         self.bg=pygame.transform.scale(self.bg,(self.surface.get_width(),self.surface.get_height()))
-        self.textFieldList=[TextField(surface,buttonX,buttonY,buttonWidth,buttonHeight,8,(255,255,255))]
+        self.textFieldList=[TextField(surface,buttonX,buttonY,buttonWidth,buttonHeight,3,(255,255,255))]
         
     def render(self):
         self.surface.blit(self.bg,(0,0))
