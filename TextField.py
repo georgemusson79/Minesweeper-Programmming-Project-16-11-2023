@@ -20,7 +20,7 @@ class TextField:
     def __init__(self,surface:pygame.Surface,x: int,y:int ,w:int,h:int,maxLength:int,color:pygame.Color=pygame.Color(255,255,255),textColor:pygame.Color=pygame.Color(0,0,0),allowedCharacters:str=string.printable,text=""):
         self.surface=surface
         self.x=x
-        self.text="bruh"
+        self.text=""
         self.y=y
         self.w=w
         self.h=h
@@ -58,7 +58,7 @@ class TextField:
            charWidth=self.w/self.maxLength #get pixel width of each character by dividing width of the textbox by max characters allowed
         imgTextWidth=charWidth*len(self.text) #get text pixel with by multiplying charWidth by size of string
         imgText=pygame.transform.scale(imgText,(imgTextWidth,self.h)) #height will be the same size as textbox height
-        self.surface.blit(imgText,(r.x,r.y))
+        self.surface.blit(imgText,(r.x,r.y)) #top left corner of text is in top left corner of text box
     def handleInput(self):
         #checks if user has typed anything if the textbox is focused and active and enter it into the text field otherwise return nothing
         if not self.active or not self.isFocused:
