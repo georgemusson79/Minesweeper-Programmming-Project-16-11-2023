@@ -111,4 +111,7 @@ The Aim of this project is to:
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
 |----------------------|----------------------------|-----------------|----------------|
 | Rendering to screen|Test background and submit button renders to screen, button renders in the bottom middle|Background renders but button renders to the right|`buttonX=self.surface.get_width()/2+(buttonWidth/2)` was changed to `buttonX=self.surface.get_width()/2-(buttonWidth/2)` now button renders in the correct place, text fields now need to be added|
-|Rendering to screen 2| 
+|Rendering to screen 2| 3 text fields render to screen with text above indicating what they do, with a submit button in the bottom center of the screen| As stated in "what is supposed to happen"| N/A|
+|Handle user input - inputting any non-numeric character| Character should be ignored and nothing is entered| As stated in "what is supposed to happen"| N/A|
+|Handle user input - inputting invalid numbers | Program displays error on the screen, the user can click an ok button to try typing again | Error is displayed in console but not on screen | Develop a means of displaying the error to the screen |
+|Handle user input - user tries to write more than 2 characters in board width and board height and more than 4 characters in mine count text field | Any extra input is ignored unless user presses backspace to delete the end character | As stated in  "what is supposed to happen"| N/A|

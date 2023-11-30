@@ -24,7 +24,6 @@ def main():
     mainMenu=MainMenu(surface)
     mainGame=MainGame(surface)
     gameSetup=GameSetup(surface)
-    mainGame.generateBoard(15,15,40,pygame.Rect(0,0,500,500))
     
     while running:
         surface.fill((0,0,0)) #clear the screen
@@ -36,6 +35,14 @@ def main():
                 mainGame.update()
             case GameStates.GAME_SETUP:
                 gameSetup.update()
+                if gameSetup.submitPressed:
+                    #if the user has pressed the submit button in gameSetup, check if conditions are correct and if so update game state
+                    gameSetup.submitPressed=False
+                    try:
+                        mainGame.generateBoard(gameSetup.boardWidth,gameSetup.boardHeight,gameSetup.mineCount,pygame.Rect(0,0,900,900))
+                        gameState.setGameState(GameStates.MAIN_GAME)
+                    except Exception as e:
+                        print(e)
 
 
    
