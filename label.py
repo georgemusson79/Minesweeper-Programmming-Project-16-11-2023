@@ -28,6 +28,6 @@ class Label:
     def setText(self,text:str):
         #set text and update textImg
         self.text=text
-        fontImg=
+        fontImg=None
 
         

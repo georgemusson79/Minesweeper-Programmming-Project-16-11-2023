@@ -52,10 +52,10 @@ class TextField:
         r=pygame.Rect(self.x,self.y,self.w,self.h)
         pygame.draw.rect(self.surface,self.color,r) #draw background to screen
         imgText=self.font.render(self.text,True,self.textColor) #load text as image
-        if self.maxLength<8:
+        if len(self.text)<8:
             charWidth=self.w/8 #if there are less than 8 characters one character takes up an 8th of the textbox
         else:
-           charWidth=self.w/self.maxLength #get pixel width of each character by dividing width of the textbox by max characters allowed
+           charWidth=self.w/len(self.text) #get pixel width of each character by dividing width of the textbox by max characters allowed
         imgTextWidth=charWidth*len(self.text) #get text pixel with by multiplying charWidth by size of string
         imgText=pygame.transform.scale(imgText,(imgTextWidth,self.h)) #height will be the same size as textbox height
         self.surface.blit(imgText,(r.x,r.y)) #top left corner of text is in top left corner of text box

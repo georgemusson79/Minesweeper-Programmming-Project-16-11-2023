@@ -101,7 +101,8 @@ The Aim of this project is to:
 |Handle text input|Backspace deletes text, typing text adds it to the box| Backspace works however normal characters dont work and cause a crash| the issue was key was a numeric value being checked to see if it was in a string, now the key is converted to a character using `pygame.get_name(key)` which fixed it|
 |Pressing a key| If one key is pressed one character is created| If you tap it it creates one character however if you hold it for slightly too long it'll add too many characters| Add a cooldown time between character presses so holding the key doesnt create multiple characters|
 |Only type if user has clicked on the box| If the users last click was on the text box and the user presses a key, enter text otherwise dont| As stated in "whats supposed to happen"| N/A|
-|Scale text| Each character scaled to be 1/8th the size of the box, if there are more than 8 characters scale to fit| Text currently scales incorrectly such that each character is the length of the box/the max number of characters|
+|Scale text| Each character scaled to be 1/8th the size of the box, if there are more than 8 characters scale to fit| Text currently scales incorrectly such that each character is the length of the box/the max number of characters| Code modified: program was checking to see if the max amount of characters was less than 8 rather than the current amount of characters|
+|Scale text test 2| As stated above| As stated in "what is supposed to happen" however if there is too much text it becomes hard to read, however since these textfields are only being used once with a small number of characters this isnt an issue for this project| TextField complete|
 
 
 #### <u>Label</u>
