@@ -11,7 +11,7 @@ class Label:
     font=pygame.font.Font
     fontImg: pygame.Surface
     active:bool
-    def __init__(self,surface:pygame.surface,x:int,y:int,w:int,h:int,color=(255,255,255),font:pygame.font.Font=None):
+    def __init__(self,surface:pygame.surface,x:int,y:int,w:int,h:int,text:str="",color=(255,255,255),font:pygame.font.Font=None):
         self.x=x
         self.y=y
         self.w=w
@@ -22,12 +22,19 @@ class Label:
         else:
             self.font=font
         self.surface=surface
+        self.setText(text,color)
     def render(self):
         #renders text to surface
-        self.surface.blit()
-    def setText(self,text:str):
+        self.fontImg=pygame.transform.scale(self.fontImg,(self.w,self.h))
+        self.surface.blit(self.fontImg,(self.x,self.y))
+
+
+    def setText(self,text:str,color:pygame.Color=(255,255,255)):
         #set text and update textImg
         self.text=text
-        fontImg=None
+        self.color=color
+        self.fontImg=self.font.render(self.text,True,self.color)
+
+        
 
         

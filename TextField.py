@@ -2,6 +2,11 @@ import pygame
 import pygame.font
 import string
 import time
+from enum import Enum
+
+
+
+
 class TextField:
     x: int
     y: int
@@ -52,9 +57,8 @@ class TextField:
         r=pygame.Rect(self.x,self.y,self.w,self.h)
         pygame.draw.rect(self.surface,self.color,r) #draw background to screen
         imgText=self.font.render(self.text,True,self.textColor) #load text as image
-        if len(self.text)<8:
-            charWidth=self.w/8 #if there are less than 8 characters one character takes up an 8th of the textbox
-        else:
+        charWidth=self.h/2 #by default the width of each character is the height of the textbox/2
+        if len(self.text)*charWidth>self.w: #shrink the width of each character if the size of the inputted data would go outside the box
            charWidth=self.w/len(self.text) #get pixel width of each character by dividing width of the textbox by max characters allowed
         imgTextWidth=charWidth*len(self.text) #get text pixel with by multiplying charWidth by size of string
         imgText=pygame.transform.scale(imgText,(imgTextWidth,self.h)) #height will be the same size as textbox height

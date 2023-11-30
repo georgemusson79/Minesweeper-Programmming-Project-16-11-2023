@@ -88,10 +88,6 @@ The Aim of this project is to:
 |Will window stay open| Main loop keeps running while running is true, constantly setting the main surface to black and rendering the surface to the screen| As stated in "Whats supposed to happen"|Handle user input
 |Does exit button work| Clicking on the x in the top right closes the program| As stated in "whats supposed to happen"| Test game states|
 |Will changing the gameState load the corect screen| Setting to mainMenu will load the mainMenu screen and allow the user to click the buttons, loading the MainGame will load the MainGame screen and allow user to play the game etc, this will work no matter when you change the gameState| What was stated in "whats supposed to happen" as long as the specified class is initialised, which happens at the start of the programm| Main Loop is ready, continue to add other game state classes
-#### <u>GameSetup</u>
-| What is Being Tested | What is supposed to happen | What did Happen | What to do now |
-|----------------------|----------------------------|-----------------|----------------|
-| Rendering to screen|Test background and submit button renders to screen, button renders in the bottom middle|Background renders but button renders to the right|`buttonX=self.surface.get_width()/2+(buttonWidth/2)` was changed to `buttonX=self.surface.get_width()/2-(buttonWidth/2)` now button renders in the correct place, text fields now need to be added|
 
 #### <u>TextField</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
@@ -101,10 +97,18 @@ The Aim of this project is to:
 |Handle text input|Backspace deletes text, typing text adds it to the box| Backspace works however normal characters dont work and cause a crash| the issue was key was a numeric value being checked to see if it was in a string, now the key is converted to a character using `pygame.get_name(key)` which fixed it|
 |Pressing a key| If one key is pressed one character is created| If you tap it it creates one character however if you hold it for slightly too long it'll add too many characters| Add a cooldown time between character presses so holding the key doesnt create multiple characters|
 |Only type if user has clicked on the box| If the users last click was on the text box and the user presses a key, enter text otherwise dont| As stated in "whats supposed to happen"| N/A|
-|Scale text| Each character scaled to be 1/8th the size of the box, if there are more than 8 characters scale to fit| Text currently scales incorrectly such that each character is the length of the box/the max number of characters| Code modified: program was checking to see if the max amount of characters was less than 8 rather than the current amount of characters|
+|Scale text| Each character scaled to be half the height of the box, if the pixel width of the inputted data is bigger than the text box scale to fit| As stated in "whats supposed to happen"| N/A|
 |Scale text test 2| As stated above| As stated in "what is supposed to happen" however if there is too much text it becomes hard to read, however since these textfields are only being used once with a small number of characters this isnt an issue for this project| TextField complete|
 
 
 #### <u>Label</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
 |----------------------|----------------------------|-----------------|----------------|
+|Label renders to screen| Text appears on screen at x,y position being w wide and h tall| As stated in "Whats supposed to happen"| Test different colours|
+|Text can be set to different colour|Run `setText()` or constructor setting colour to rgb value such as `(255,0,0)`. Text should be red| As stated in "Whats supposed to happen"| Label is finished|
+
+#### <u>GameSetup</u>
+| What is Being Tested | What is supposed to happen | What did Happen | What to do now |
+|----------------------|----------------------------|-----------------|----------------|
+| Rendering to screen|Test background and submit button renders to screen, button renders in the bottom middle|Background renders but button renders to the right|`buttonX=self.surface.get_width()/2+(buttonWidth/2)` was changed to `buttonX=self.surface.get_width()/2-(buttonWidth/2)` now button renders in the correct place, text fields now need to be added|
+|Rendering to screen 2| 
