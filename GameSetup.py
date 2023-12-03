@@ -44,7 +44,6 @@ class GameSetup:
         labelHeight=textFieldHeight
         labelCharWidth=surface.get_width()/40
         self.labelsList=[Label(surface,self.textFieldList[GameAttrs.BOARD_WIDTH].x,self.textFieldList[GameAttrs.BOARD_WIDTH].y-labelHeight,labelCharWidth*len("Board Width:"),labelHeight,"Board Width:"),Label(surface,self.textFieldList[GameAttrs.BOARD_WIDTH].x,self.textFieldList[GameAttrs.BOARD_HEIGHT].y-labelHeight,labelCharWidth*len("Board Height:"),labelHeight,"Board Height:"),Label(surface,self.textFieldList[GameAttrs.BOARD_WIDTH].x,self.textFieldList[GameAttrs.MINE_COUNT].y-labelHeight,labelCharWidth*len("Mine Count:"),labelHeight,"Mine Count:")]
-        
     def render(self):
         self.surface.blit(self.bg,(0,0))
         for button in self.buttons:
@@ -62,6 +61,7 @@ class GameSetup:
         for textField in self.textFieldList:
             textField.checkIfClicked()
             textField.handleInput()
+
     def submit(self):
         #updates attributes and sets submitPressed to true for the main loop to verify everything is correct and handle game state switching
         for textField in self.textFieldList:
@@ -71,7 +71,6 @@ class GameSetup:
         self.boardHeight=int(self.textFieldList[GameAttrs.BOARD_HEIGHT].text)
         self.boardWidth=int(self.textFieldList[GameAttrs.BOARD_WIDTH].text)
         self.mineCount=int(self.textFieldList[GameAttrs.MINE_COUNT].text)
-        print(self.boardHeight,self.boardWidth,self.mineCount)
         self.submitPressed=True
   
 

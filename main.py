@@ -5,6 +5,7 @@ from GameSetup import GameSetup
 from MainGame import MainGame
 from gameState import GameStates
 import gameState
+from label import Label
 from MainMenu import MainMenu
 
 
@@ -27,6 +28,8 @@ def main():
     gameSetup=GameSetup(surface)
     
     while running:
+
+        
         #main game loop
         surface.fill((0,0,0)) #clear the screen
         gState=gameState.getGameState()
