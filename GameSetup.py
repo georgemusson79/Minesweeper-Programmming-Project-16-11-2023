@@ -22,6 +22,7 @@ class GameSetup:
     mineCount=0
     submitPressed=False
 
+
     def __init__(self,surface:pygame.Surface):
         self.surface=surface
 
@@ -63,6 +64,10 @@ class GameSetup:
             textField.handleInput()
     def submit(self):
         #updates attributes and sets submitPressed to true for the main loop to verify everything is correct and handle game state switching
+        for textField in self.textFieldList:
+            if textField.text=="":
+                print("All fields must contain a value")
+                return 0
         self.boardHeight=int(self.textFieldList[GameAttrs.BOARD_HEIGHT].text)
         self.boardWidth=int(self.textFieldList[GameAttrs.BOARD_WIDTH].text)
         self.mineCount=int(self.textFieldList[GameAttrs.MINE_COUNT].text)

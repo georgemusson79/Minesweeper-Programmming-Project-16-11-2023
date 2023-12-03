@@ -3,6 +3,7 @@ from button import Button
 from Tile import Tile
 from BoardException import BoardException
 import random
+import consts
 def test():
     print("output")
 
@@ -10,8 +11,8 @@ def test():
 class MainGame:
     board=None
     boardGenerated=False
-    flagTexture=None
-    mineCount=0
+    flagTexture:pygame.Surface
+    mineCount:int=0
     boardW=0 #represents number of tiles on the board on the x axis
     boardH=0 #represents number of tiles on the board on the y axis
     boardDims=pygame.Rect(0,0,0,0)
@@ -21,6 +22,8 @@ class MainGame:
     font=None #font for rendering numbers to screen
     openCount=0
     gameOver=False
+    lose=False
+    mineTexture:pygame.Surface
     buttons=[]
 
 
@@ -84,6 +87,10 @@ class MainGame:
                 self.openTile(boardX,boardY)   
                 self.clickCoolDownTimePassed=0
                 self.openCount+=1
+                if self.board[boardX][boardY].isMine:
+                    #if user left clicks on mine initiate game over
+                    self.gameOver=True
+                    self.lose=True
              
             elif btn[2] and not self.board[boardX][boardY].isOpen: #if right click and tile not opened
                 self.board[boardX][boardY].isFlagged= not self.board[boardX][boardY].isFlagged #if flagged becomes not flagged and vice versa
@@ -109,6 +116,8 @@ class MainGame:
         self.boardDims=pygame.Rect(x,y,w,h)
         self.flagTexture=pygame.image.load("assets\\img\\flag.png")
         self.flagTexture=pygame.transform.scale(self.flagTexture,(w/self.boardW,h/self.boardH))
+        self.mineTexture=pygame.image.load("assets\\img\\mine.png")
+        self.mineTexture=pygame.transform.scale(self.mineTexture,(w/self.boardW,h/self.boardH))
 
     def generateBoard(self,width:int,height:int,mineCount:int,renderDims:pygame.Rect):
         #generates board that will be played on, parameters are board width, height and number of mines, all ints, returns void
@@ -169,20 +178,18 @@ class MainGame:
                 #make checkerboard pattern
                 if x%2==0:
                     if y%2==0:
-                        color=(0,255,0)
+                        color=consts.BOARD_COLOR1
                     else:
-                        color=(0,0,255)
+                        color=consts.BOARD_COLOR2
                 else:
                     if y%2==1:
-                        color=(0,255,0)
+                        color=consts.BOARD_COLOR1
                     else:
-                        color=(0,0,255)
+                        color=consts.BOARD_COLOR2
 
                 if self.board[x][y].isOpen: 
                     #override color if the tile has already been discovered
                     color=(239,228,176)
-                if self.board[x][y].isMine:
-                    color=(0,0,0)
                 pygame.draw.rect(self.surface,color,r)
                 if self.board[x][y].isOpen and self.board[x][y].surroundingMineCount>0:
                     #render text displaying surrounding number of mines on top of tile if tile is open
@@ -193,6 +200,13 @@ class MainGame:
                 
                 if self.board[x][y].isFlagged:
                     self.surface.blit(self.flagTexture,r)
+                if self.gameOver and self.lose and self.board[x][y].isMine:
+                    #render all mines if game over is true and player has lost
+                    self.surface.blit(self.mineTexture,r)
+
+         
+
+                        
                 
 
 

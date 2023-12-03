@@ -63,6 +63,7 @@ The Aim of this project is to:
 |`MainMenu.render()`| Renders buttons and background to screen when called which is displayed when surface.update is called | As stated in 'What is supposed to happen' | N/A|
 |`MainMenu.update()`|Calls `MainMenu.render()` and also handles mouse button clicks|As stated in 'What is supposed to happen'| N/A|
 |When start button is clicked Menu allowing user to define board settings is loaded| Currently goes straight into a preset game as attribute menu hasnt been created yet| Create an attribute menu and have gameState be set to GAME_SETUP|
+| When start button is clicked Menu allowing user to define board settings is loaded 2| Loads game setup menu allowing user to enter details and start game | Add load game button to main menu|
 
 
 
@@ -76,7 +77,6 @@ The Aim of this project is to:
 |Player left clicks or right clicks off board but on screen| If nothing is pressed, do nothing, if there is a button on the screen handle button click| Buttons can't be added into the mainGame class yet so they dont work| Created an array called buttons, this list is iterated over in update() and button.render and button.handle clicks() so buttons should work|
 |Do buttons in MainGame work| Button should render to screen,Left click and right click button functions should work without affecting the board|Test button was added in `MainGame.__init__` with the line `self.buttons=[Button(surface,0,500,300,100,"assets/img/button1.png",leftClickFunc=test)]` adding a button the bottom left of the screen with a left click test function that would print a line to console, this worked however right click didnt work |There was an issue in button.handleClick at the line `if btn[2]: self.onRightClick()` this was set to `if btn[1]: self.onRightClick()` which actually checks for middle click, not right click|
 |Testing right click in MainGame| When button in MainGame is right clicked test function should run once per right click this is the code for the button: `self.buttons=[Button(surface,0,500,300,100,"assets/img/button1.png",rightClickFunc=test)]`| Test was successful, test function successfully outputed to console once per right click| N/A|
-|
 
 #### <u>gameState</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
@@ -113,5 +113,11 @@ The Aim of this project is to:
 | Rendering to screen|Test background and submit button renders to screen, button renders in the bottom middle|Background renders but button renders to the right|`buttonX=self.surface.get_width()/2+(buttonWidth/2)` was changed to `buttonX=self.surface.get_width()/2-(buttonWidth/2)` now button renders in the correct place, text fields now need to be added|
 |Rendering to screen 2| 3 text fields render to screen with text above indicating what they do, with a submit button in the bottom center of the screen| As stated in "what is supposed to happen"| N/A|
 |Handle user input - inputting any non-numeric character| Character should be ignored and nothing is entered| As stated in "what is supposed to happen"| N/A|
-|Handle user input - inputting invalid numbers | Program displays error on the screen, the user can click an ok button to try typing again | Error is displayed in console but not on screen | Develop a means of displaying the error to the screen |
+|Handle user input - inputting invalid numbers | Program displays error in console, the user can click an ok button to try typing again | Error is displayed in console, entering nothing also causes a crash |Handle when user enters nothing |
 |Handle user input - user tries to write more than 2 characters in board width and board height and more than 4 characters in mine count text field | Any extra input is ignored unless user presses backspace to delete the end character | As stated in  "what is supposed to happen"| N/A|
+|Handle user input - Enter nothing| Error outputted to console and allow user to input value| As stated in "What is supposed to happen"| GameSetup complete|
+
+#### <u>MainGame class- handling game overs</u>
+| What is Being Tested | What is supposed to happen | What did Happen | What to do now |
+|----------------------|----------------------------|-----------------|----------------|
+|User left clicks on mine|

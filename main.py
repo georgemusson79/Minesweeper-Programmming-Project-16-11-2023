@@ -1,5 +1,6 @@
 #main.py
 import pygame
+import time
 from GameSetup import GameSetup
 from MainGame import MainGame
 from gameState import GameStates
@@ -26,6 +27,7 @@ def main():
     gameSetup=GameSetup(surface)
     
     while running:
+        #main game loop
         surface.fill((0,0,0)) #clear the screen
         gState=gameState.getGameState()
         match gState:
@@ -40,6 +42,7 @@ def main():
                     gameSetup.submitPressed=False
                     try:
                         mainGame.generateBoard(gameSetup.boardWidth,gameSetup.boardHeight,gameSetup.mineCount,pygame.Rect(0,0,900,900))
+                        time.sleep(1)
                         gameState.setGameState(GameStates.MAIN_GAME)
                     except Exception as e:
                         print(e)
