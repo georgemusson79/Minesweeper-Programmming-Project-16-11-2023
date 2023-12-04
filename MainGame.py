@@ -3,6 +3,7 @@ import pygame
 import time
 from button import Button
 from Tile import Tile
+from label import Label
 from BoardException import BoardException
 import random
 import consts
@@ -30,6 +31,7 @@ class MainGame:
     mineTexture:pygame.Surface
     buttons=[]
     gameOverScreen=None
+    flagCountLabel:Label
 
     def resign(self):
         self.gameOver=True
@@ -100,6 +102,7 @@ class MainGame:
         saveButton=Button(surface,margin,buttonY,buttonWidth,buttonHeight,"assets//img//Save.png",self.save)
         exitButton=Button(surface,surface.get_width()-margin-buttonWidth,buttonY,buttonWidth,buttonHeight,"assets//img//resign.png",self.resign)
         self.buttons=[saveButton,exitButton]
+        self.flagCountLabel=Label(surface,(self.surface.get_width()/2)-buttonWidth/2,buttonY+buttonHeight/4,buttonWidth,buttonHeight/2,"Flags Held:") #label to display how many flags the user is holding
 
     def scatterMines(self):
         #places mines randomly around the board where isOpen=false, returns void
@@ -149,6 +152,11 @@ class MainGame:
                 
              
             elif btn[2] and not self.board[boardX][boardY].isOpen: #if right click and tile not opened
+                if self.board[boardX][boardY].isFlagged:
+                    #if the player removes a placed flag increase the count otherwise decrease
+                    self.flagCounter+=1
+                else:
+                    self.flagCounter-=1
                 self.board[boardX][boardY].isFlagged= not self.board[boardX][boardY].isFlagged #if flagged becomes not flagged and vice versa
                 self.clickCoolDownTimePassed=0
         self.clickCoolDownTimePassed+=1
@@ -192,6 +200,7 @@ class MainGame:
         self.boardW=width
         self.boardH=height
         self.mineCount=mineCount
+        self.flagCounter=mineCount
         self.setBoardDims(renderDims.x,renderDims.y,renderDims.w,renderDims.h)
         self.board=[[Tile() for y in range(height)]for x in range(width)]
         self.boardGenerated=True
@@ -204,10 +213,13 @@ class MainGame:
         self.renderBoard()
         if not self.gameOver:
              self.boardHandleClicks() #only allow the user to open/flag tiles when game is not over
-             #only render buttons and allow usage when not game over
+             #only render buttons and flag counter and allow usage when not game over
              for button in self.buttons:
                 button.handleClick() 
                 button.render()
+             text="Flags Held: "+str(self.flagCounter)
+             self.flagCountLabel.setText(text)
+             self.flagCountLabel.render()
 
 
         if self.gameOver:

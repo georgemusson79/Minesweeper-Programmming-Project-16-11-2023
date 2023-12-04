@@ -127,9 +127,10 @@ The Aim of this project is to:
 |What happens when a user clicks on a mine that has been flagged| Nothing happens| Mine is activated and user gets game over| Fixed bug by moving where the game checks if a tile is a mine into openTile, after checking if the tile has been flagged|
 |User tries to click tile or buttons while game over screen is active| Nothing happens | Nothing happens|Game over screen complete|
 
-#### <u>MainGame class- Save game and quit buttons</u>
+#### <u>MainGame class - Save game and quit buttons</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
 |----------------------|----------------------------|-----------------|----------------| 
+|Quit button|Brings up game over screen saying "You lose"| As stated in "whats supposed to happen"|N/A|
 |Save game - saving to file| Opens file explorer and writes a .save file containing binary game data to the location specified| Exception: `TypeError: write() argument must be str, not bytes`, this was caused by opening the file in `w+` mode rather than `w+b` for handling binary|Try with `w+b` instead|
 |Save game - saving to file 2| As stated above| As stated in "whats supposed to happen"|N/A|
 |Save game - user selects a file that already exits| Ask user if they want to overwrite if they say yes then save| As stated in "whats supposed to happen"| N/A|
@@ -137,3 +138,10 @@ The Aim of this project is to:
 |Load file - user attempts to load a saved file| State is loaded and program continues into main game with the loaded boar| As stated in "what is supposed to happen"| Test invalid/no file selected|
 |Load file - the user cancels before selecting a file| No error is outputted and program returns to main menu| As stated in "what is supposed to happen"| Test invalid files|
 |Load file - user loads a .save file that doesnt contain the correct data| Error outputted saying "Unable to load the file!" to console and program returns to main menu| As stated in "what is supposed to happen"| Save/load functionality is complete - All criteria met, program is complete|
+
+#### <u>MainGame class - flag counter</u>
+| What is Being Tested | What is supposed to happen | What did Happen | What to do now |
+|----------------------|----------------------------|-----------------|----------------| 
+|Counter renders to screen| Rendered to bottom middle of screen stating mine count at the start| As stated in "whats supposed to happen"| Test placing and removing flags|
+|User places flag| Flag counter decreases, will go into negative numbers if possible | As stated in "what is supposed to happen"| Test removing a flag|
+|User removes flag from board| Counter increases| Counter increases| Flag counter complete|
