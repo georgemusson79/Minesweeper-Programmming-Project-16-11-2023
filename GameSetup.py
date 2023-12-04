@@ -31,7 +31,7 @@ class GameSetup:
         buttonHeight=self.surface.get_height()/8
         buttonX=self.surface.get_width()/2-(buttonWidth/2)
         buttonY=self.surface.get_height()*6/8
-        self.buttons=[Button(self.surface,buttonX,buttonY,buttonWidth,buttonHeight,"assets/img/submitButton.png",self.submit)]
+        self.buttons=[Button(self.surface,buttonX,buttonY,buttonWidth,buttonHeight,"assets/img/submitButton.png",self.submit)] #submit button
         self.bg=pygame.image.load("assets//img//GameSetup.png")
         self.bg=pygame.transform.scale(self.bg,(self.surface.get_width(),self.surface.get_height()))
         textFieldWidth=self.surface.get_width()/2

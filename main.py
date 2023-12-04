@@ -46,7 +46,10 @@ def main():
                     #if the user has pressed the submit button in gameSetup, check if conditions are correct and if so update game state
                     gameSetup.submitPressed=False
                     try:
-                        mainGame.generateBoard(gameSetup.boardWidth,gameSetup.boardHeight,gameSetup.mineCount,pygame.Rect(0,0,900,900))
+                        margin=WINDOW_WIDTH/10 #distance between the edges of the board on the x axis and edge of the screen
+                        boardX=margin
+                        boardWidth=WINDOW_WIDTH-(2*margin)
+                        mainGame.generateBoard(gameSetup.boardWidth,gameSetup.boardHeight,gameSetup.mineCount,pygame.Rect(boardX,0,boardWidth,boardWidth)) #board is a square
                         time.sleep(1)
                         gameState.setGameState(GameStates.MAIN_GAME)
                     except Exception as e:

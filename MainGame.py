@@ -70,6 +70,10 @@ class MainGame:
         #if the surroundingMineCount is 0 on the tile it'll also recursively call openTile() on the surrounding tiles until it finds a tile with a surroundingMineCount greater than 0
         if self.isOnBoard(x,y) and not self.board[x][y].isOpen and not self.board[x][y].isFlagged:
             self.board[x][y].isOpen=True
+            if self.board[x][y].isMine:
+               #if user left clicks on mine initiate game over
+               self.gameOver=True
+               self.lose=True
             self.board[x][y].surroundingMineCount=self.getMineCountAroundPt(x,y)
             if (self.board[x][y].surroundingMineCount==0):
                 for posX in range(x-1,x+2):
@@ -83,7 +87,15 @@ class MainGame:
     def __init__(self,surface):
         self.surface=surface
         self.font=pygame.font.Font(None,64)
-        #self.buttons=[Button(surface,0,500,300,100,"assets/img/button1.png",rightClickFunc=test)]
+
+        #generate buttons on bottom left and right of screen
+        buttonWidth=surface.get_width()/4
+        buttonHeight=surface.get_height()/6
+        buttonY=surface.get_height()-buttonHeight
+        margin=surface.get_width()/10
+        saveButton=Button(surface,margin,buttonY,buttonWidth,buttonHeight,"assets//img//Save.png",None)
+        exitButton=Button(surface,surface.get_width()-margin-buttonWidth,buttonY,buttonWidth,buttonHeight,"assets//img//resign.png",None)
+        self.buttons=[saveButton,exitButton]
 
     def scatterMines(self):
         #places mines randomly around the board where isOpen=false, returns void
@@ -125,10 +137,7 @@ class MainGame:
                 self.openTile(boardX,boardY)   
                 self.clickCoolDownTimePassed=0
                 self.openCount+=1
-                if self.board[boardX][boardY].isMine:
-                    #if user left clicks on mine initiate game over
-                    self.gameOver=True
-                    self.lose=True
+
                 if self.checkForWin():
                     #if user has discovered all mines without activating any of them initiate game over by winning
                     self.gameOver=True
