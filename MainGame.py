@@ -1,10 +1,13 @@
+from cgitb import reset
 import pygame
+import time
 from button import Button
 from Tile import Tile
 from BoardException import BoardException
 import random
 import consts
 from gameOverOverlay import GameOverOverlay
+import gameState
 
 
 class MainGame:
@@ -27,15 +30,30 @@ class MainGame:
     buttons=[]
     gameOverScreen=None
 
+    def exit(self):
+        self.reset()
+        gameState.setGameState(gameState.GameStates.MAIN_MENU)
+        
+    def reset(self):
+        #clears game over screen and regenerates board with same attributes
+        self.openCount=0
+        self.gameOverScreen=None
+        self.lose=False
+        self.gameOver=False
+        self.generateBoard(self.boardW,self.boardH,self.mineCount,self.boardDims)
+        time.sleep(1)
+
     def handleGameOver(self):
         #to be called every frame while gameOver is true, handles generation of game over screen and rendering as well as gameOver button inputs
         if self.gameOverScreen==None:
             self.gameOverScreen=GameOverOverlay(self.surface,0,self.surface.get_height()*2,self.lose) #generate game over off screen
+            self.gameOverScreen.buttons[0].leftClickFunc=self.reset #sets retry button to regenerate the board on click
+            self.gameOverScreen.buttons[1].leftClickFunc=self.exit #quit but when pressed will return to main menu
         if self.gameOverScreen.y>0:
            self.gameOverScreen.y-=self.surface.get_height()/60 #move game over screen upwards into view
             
 
-        self.gameOverScreen.render()
+        self.gameOverScreen.update()
         pass
 
     def checkForWin(self):

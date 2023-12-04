@@ -12,7 +12,11 @@ class GameOverOverlay:
     bg:pygame.Surface #background
     gameOverBox:pygame.Surface #box containing game over text and buttons
     surface:pygame.Surface
-
+    
+    def update(self):
+        self.render()
+        for button in self.buttons:
+            button.handleClick()
 
 
     def render(self):
