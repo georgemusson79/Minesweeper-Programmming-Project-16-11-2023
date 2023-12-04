@@ -289,7 +289,7 @@ class MainGame:
             if path=="":
                 return False
             with open(path,"w+b") as file:
-                data={"board":self.board,"dims":self.boardDims,"width":self.boardW,"height":self.boardH,"mineCount":self.mineCount,"flagCount":self.flagCounter}
+                data={"board":self.board,"width":self.boardW,"height":self.boardH,"mineCount":self.mineCount,"flagCount":self.flagCounter}
                 pickle.dump(data,file)
             return True
         except:
@@ -306,15 +306,22 @@ class MainGame:
             with open(path,"rb") as file:
                 data=pickle.load(file)
                 self.board=data["board"]
-                dims=data["dims"]
-                self.setBoardDims(dims.x,dims.y,dims.w,dims.h)
+
+
+                margin=self.surface.get_width()/10 #distance between the edges of the board on the x axis and edge of the screen
+                boardX=margin
+                boardWidth=self.surface.get_width()-(2*margin)
+             
+
+
                 self.boardW=data["width"]
                 self.boardH=data["height"]
                 self.mineCount=data["mineCount"]
                 self.flagCounter=data["flagCount"]
+                self.setBoardDims(boardX,0,boardWidth,boardWidth)
                 self.boardGenerated=True
                 return True
-        except:
+        except Exception as e:
             print("Unable to load the file!")
             return False
 
