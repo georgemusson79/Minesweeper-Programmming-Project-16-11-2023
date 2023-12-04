@@ -57,6 +57,8 @@ class MainGame:
             self.gameOverScreen.buttons[1].leftClickFunc=self.exit #quit but when pressed will return to main menu
         if self.gameOverScreen.y>0:
            self.gameOverScreen.y-=self.surface.get_height()/60 #move game over screen upwards into view
+        else:
+            self.gameOverScreen.y=0
             
 
         self.gameOverScreen.update()
