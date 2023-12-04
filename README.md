@@ -16,6 +16,10 @@ The Aim of this project is to:
 - There should be a counter indicating the amount of mines there are on the board which decreases/increases when the player places/removes a flag
 - This is to indicate how close the player is to finishing the game
 
+## How to use
+- Run the program by running `main.py`
+- Command line arguments can be passed to set a custom resolution - the first argument is window width and the second is window height
+
 ## Requirements
 - [Pygame](https://pypi.org/project/pygame/)
 - [Python 3.11 Runtime Environment](https://www.python.org/downloads/)

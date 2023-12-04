@@ -20,9 +20,32 @@ WINDOW_HEIGHT=800
 
 def main():
     sys.setrecursionlimit(99*99) #increase recursion limit to handle the largest possible board
+
+    #command line args can be passed to resize window, first arg is width, second is height
+    args=sys.argv
+    if len(args)==3:
+        try:
+            global WINDOW_WIDTH
+            WINDOW_WIDTH=int(args[1])
+            global WINDOW_HEIGHT
+            WINDOW_HEIGHT=int(args[2])
+            if WINDOW_WIDTH<1 or WINDOW_HEIGHT<1:
+                print("Unable to resize the window, using default values")
+                WINDOW_HEIGHT=800
+                WINDOW_WIDTH=800
+
+        except:
+            print("Unable to resize the window, using default values")
+            WINDOW_HEIGHT=800
+            WINDOW_WIDTH=800
+
+      
+       
+
     pygame.init()
     running=True
-    surface=pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT),pygame.SCALED,vsync=1)
+    surface=pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT),vsync=True)
+    print(WINDOW_WIDTH,WINDOW_HEIGHT)
     gameState.setGameState(GameStates.MAIN_MENU)
     print(pygame.get_error())
     mainMenu=MainMenu(surface)
