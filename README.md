@@ -18,7 +18,7 @@ The Aim of this project is to:
 
 ## How to use
 - Run the program by running `main.py`
-- Command line arguments can be passed to set a custom resolution - the first argument is window width and the second is window height
+- Command line arguments can be passed to set a custom resolution - the first argument is window width and window height
 
 ## Requirements
 - [Pygame](https://pypi.org/project/pygame/)
