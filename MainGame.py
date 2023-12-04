@@ -9,6 +9,7 @@ from gameOverOverlay import GameOverOverlay
 
 class MainGame:
     board=None
+    flagCounter=0
     boardGenerated=False
     flagTexture:pygame.Surface
     mineCount:int=0
@@ -36,6 +37,16 @@ class MainGame:
 
         self.gameOverScreen.render()
         pass
+
+    def checkForWin(self):
+        #checks every tile to see if its not a mine and not open, if so returns false
+        #otherwise it can be assumed that all tiles without mines have been opened and so all mines have been found so returns true
+        for x in range(0,self.boardW):
+            for y in range(0,self.boardH):
+                if not self.board[x][y].isMine and not self.board[x][y].isOpen:
+                    return False
+        return True
+
     def openTile(self,x,y):
         #sets tile at x,y position to isOpen if it exists
         #if the surroundingMineCount is 0 on the tile it'll also recursively call openTile() on the surrounding tiles until it finds a tile with a surroundingMineCount greater than 0
@@ -100,6 +111,11 @@ class MainGame:
                     #if user left clicks on mine initiate game over
                     self.gameOver=True
                     self.lose=True
+                if self.checkForWin():
+                    #if user has discovered all mines without activating any of them initiate game over by winning
+                    self.gameOver=True
+                    self.lose=False
+                
              
             elif btn[2] and not self.board[boardX][boardY].isOpen: #if right click and tile not opened
                 self.board[boardX][boardY].isFlagged= not self.board[boardX][boardY].isFlagged #if flagged becomes not flagged and vice versa

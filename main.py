@@ -7,6 +7,7 @@ from gameState import GameStates
 import gameState
 from label import Label
 from MainMenu import MainMenu
+import sys
 
 
 global WINDOW_WIDTH
@@ -18,6 +19,7 @@ WINDOW_HEIGHT=900
 
 
 def main():
+    sys.setrecursionlimit(99*99) #increase recursion limit to handle the largest possible board
     pygame.init()
     running=True
     surface=pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT),pygame.SCALED,vsync=1)

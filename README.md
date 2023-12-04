@@ -120,4 +120,5 @@ The Aim of this project is to:
 #### <u>MainGame class- handling game overs</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
 |----------------------|----------------------------|-----------------|----------------|
-|User left clicks on mine|
+|User left clicks on mine|Game over screen pops up from the bottom saying "Game Over you lose" and presents the option to either retry or quit| As stated in "what is supposed to happen"| Testing if the user wins|
+|User opens all tiles without mines|Game over screen pops up from the bottom saying "Game Over you win" and presents the option to either retry or quit| as stated in "whats supposed to happen"| Add functionality to buttons|
