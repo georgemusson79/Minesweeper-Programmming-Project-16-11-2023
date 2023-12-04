@@ -8,7 +8,7 @@ import random
 import consts
 from gameOverOverlay import GameOverOverlay
 import gameState
-
+from tkinter import filedialog
 
 class MainGame:
     board=None
@@ -30,6 +30,9 @@ class MainGame:
     buttons=[]
     gameOverScreen=None
 
+    def resign(self):
+        self.gameOver=True
+        self.lose=True
     def exit(self):
         self.reset()
         gameState.setGameState(gameState.GameStates.MAIN_MENU)
@@ -83,7 +86,7 @@ class MainGame:
                             self.openTile(posX,posY)
                             
              
-
+   
     def __init__(self,surface):
         self.surface=surface
         self.font=pygame.font.Font(None,64)
@@ -93,8 +96,8 @@ class MainGame:
         buttonHeight=surface.get_height()/6
         buttonY=surface.get_height()-buttonHeight
         margin=surface.get_width()/10
-        saveButton=Button(surface,margin,buttonY,buttonWidth,buttonHeight,"assets//img//Save.png",None)
-        exitButton=Button(surface,surface.get_width()-margin-buttonWidth,buttonY,buttonWidth,buttonHeight,"assets//img//resign.png",None)
+        saveButton=Button(surface,margin,buttonY,buttonWidth,buttonHeight,"assets//img//Save.png",self.save)
+        exitButton=Button(surface,surface.get_width()-margin-buttonWidth,buttonY,buttonWidth,buttonHeight,"assets//img//resign.png",self.resign)
         self.buttons=[saveButton,exitButton]
 
     def scatterMines(self):
@@ -248,6 +251,8 @@ class MainGame:
                 if self.board[x][y].isOpen: 
                     #override color if the tile has already been discovered
                     color=(239,228,176)
+                    if self.board[x][y].isMine:
+                        color=(255,0,0) #make tile red if is mine and is open
                 pygame.draw.rect(self.surface,color,r)
                 if self.board[x][y].isOpen and self.board[x][y].surroundingMineCount>0:
                     #render text displaying surrounding number of mines on top of tile if tile is open
@@ -262,9 +267,10 @@ class MainGame:
                     #render all mines if game over is true and player has lost
                     self.surface.blit(self.mineTexture,r)
 
+    def save(self):
+        path=filedialog.asksaveasfilename(confirmoverwrite=True,defaultextension=".save",filetypes=[("Minesweeper Save",".save")])
+        print(path)
+
          
 
-                        
-                
-
-
+                      
