@@ -4,8 +4,7 @@ from Tile import Tile
 from BoardException import BoardException
 import random
 import consts
-def test():
-    print("output")
+from gameOverOverlay import GameOverOverlay
 
 
 class MainGame:
@@ -25,8 +24,18 @@ class MainGame:
     lose=False
     mineTexture:pygame.Surface
     buttons=[]
+    gameOverScreen=None
 
+    def handleGameOver(self):
+        #to be called every frame while gameOver is true, handles generation of game over screen and rendering as well as gameOver button inputs
+        if self.gameOverScreen==None:
+            self.gameOverScreen=GameOverOverlay(self.surface,0,self.surface.get_height()*2,self.lose) #generate game over off screen
+        if self.gameOverScreen.y>0:
+           self.gameOverScreen.y-=self.surface.get_height()/60 #move game over screen upwards into view
+            
 
+        self.gameOverScreen.render()
+        pass
     def openTile(self,x,y):
         #sets tile at x,y position to isOpen if it exists
         #if the surroundingMineCount is 0 on the tile it'll also recursively call openTile() on the surrounding tiles until it finds a tile with a surroundingMineCount greater than 0
@@ -45,7 +54,7 @@ class MainGame:
     def __init__(self,surface):
         self.surface=surface
         self.font=pygame.font.Font(None,64)
-        self.buttons=[Button(surface,0,500,300,100,"assets/img/button1.png",rightClickFunc=test)]
+        #self.buttons=[Button(surface,0,500,300,100,"assets/img/button1.png",rightClickFunc=test)]
 
     def scatterMines(self):
         #places mines randomly around the board where isOpen=false, returns void
@@ -145,10 +154,16 @@ class MainGame:
         if not self.boardGenerated:
             return
         self.renderBoard()
-        self.boardHandleClicks()
         for button in self.buttons:
-            button.handleClick()
+            if not self.gameOver:
+                button.handleClick() #only allow the user to press buttons when game is not over
             button.render()
+        if not self.gameOver:
+             self.boardHandleClicks() #only allow the user to open/flag tiles when game is not over
+
+
+        if self.gameOver:
+            self.handleGameOver()
    
 
     def getMineCountAroundPt(self,posX:int,posY:int):
