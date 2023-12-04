@@ -9,6 +9,7 @@ import consts
 from gameOverOverlay import GameOverOverlay
 import gameState
 from tkinter import filedialog
+import pickle
 
 class MainGame:
     board=None
@@ -57,7 +58,7 @@ class MainGame:
             
 
         self.gameOverScreen.update()
-        pass
+      
 
     def checkForWin(self):
         #checks every tile to see if its not a mine and not open, if so returns false
@@ -194,18 +195,19 @@ class MainGame:
         self.setBoardDims(renderDims.x,renderDims.y,renderDims.w,renderDims.h)
         self.board=[[Tile() for y in range(height)]for x in range(width)]
         self.boardGenerated=True
-
+   
+        
     def update(self):
         #to be called every frame while gameState equals MAIN_GAME
         if not self.boardGenerated:
             return
         self.renderBoard()
-        for button in self.buttons:
-            if not self.gameOver:
-                button.handleClick() #only allow the user to press buttons when game is not over
-            button.render()
         if not self.gameOver:
              self.boardHandleClicks() #only allow the user to open/flag tiles when game is not over
+             #only render buttons and allow usage when not game over
+             for button in self.buttons:
+                button.handleClick() 
+                button.render()
 
 
         if self.gameOver:
@@ -268,8 +270,36 @@ class MainGame:
                     self.surface.blit(self.mineTexture,r)
 
     def save(self):
-        path=filedialog.asksaveasfilename(confirmoverwrite=True,defaultextension=".save",filetypes=[("Minesweeper Save",".save")])
-        print(path)
+        #open file explorer and allows user to select and save a file
+        #on success returns true otherwise returns false
+        try:
+            path=filedialog.asksaveasfilename(confirmoverwrite=True,defaultextension=".save",filetypes=[("Minesweeper Save",".save")])
+            if path=="":
+                return False
+            with open(path,"w+b") as file:
+                data={"board":self.board,"dims":self.boardDims,"width":self.boardW,"height":self.boardH,"mineCount":self.mineCount,"flagCount":self.flagCounter}
+                pickle.dump(data,file)
+            return True
+        except:
+            print("unable to save the file!")
+            return False
+
+    def loadBoardFromFile(self):
+        #loads file by get user to select file from file explorer and passing data from file to attributes
+        #returns true on success otherwise returns false
+        path=filedialog.askopenfilename(defaultextension=".save",filetypes=[("Minesweeper Save",".save")])
+        if path=="":
+            return False
+        with open(path,"rb") as file:
+            data=pickle.load(file)
+            self.board=data["board"]
+            dims=data["dims"]
+            self.setBoardDims(dims.x,dims.y,dims.w,dims.h)
+            self.boardW=data["width"]
+            self.boardH=data["height"]
+            self.mineCount=data["mineCount"]
+            self.flagCounter=data["flagCount"]
+            self.boardGenerated=True
 
          
 

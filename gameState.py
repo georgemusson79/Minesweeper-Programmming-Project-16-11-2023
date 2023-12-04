@@ -3,6 +3,7 @@ class GameStates(Enum):
     MAIN_MENU=1
     MAIN_GAME=2
     GAME_SETUP=3
+    LOAD_FILE=4
 global gameState
 gameState=None
 

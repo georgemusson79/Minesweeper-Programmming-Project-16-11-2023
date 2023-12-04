@@ -39,7 +39,10 @@ class MainMenu:
         buttonHeight=self.surface.get_height()/8
         buttonX=self.surface.get_width()/2-(buttonWidth/2)
         buttonY=self.surface.get_height()*3/8
-        self.buttons=[Button(surface,buttonX,buttonY,buttonWidth,buttonHeight,"assets//img//button1.png",gameState.setGameState,lcArgs=GameStates.GAME_SETUP)]
+        gap=buttonY/2
+        start=Button(surface,buttonX,buttonY,buttonWidth,buttonHeight,"assets//img//button1.png",gameState.setGameState,lcArgs=GameStates.GAME_SETUP)
+        loadGame=Button(surface,buttonX,start.h+start.y+gap,buttonWidth,buttonHeight,"assets//img//load.png",gameState.setGameState,lcArgs=GameStates.LOAD_FILE) #gameState is set to load_file, this allows the game loop to call a function in main.py to load the file
+        self.buttons=[start,loadGame]
     def render(self):
         #renders the MainMenu to the screen returns nothing
         self.surface.blit(self.bg,(0,0)) #render background to window

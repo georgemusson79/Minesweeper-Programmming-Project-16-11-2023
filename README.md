@@ -129,4 +129,8 @@ The Aim of this project is to:
 
 #### <u>MainGame class- Save game and quit buttons</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
-|----------------------|----------------------------|-----------------|----------------|
+|----------------------|----------------------------|-----------------|----------------| 
+|Save game - saving to file| Opens file explorer and writes a .save file containing binary game data to the location specified| Exception: `TypeError: write() argument must be str, not bytes`, this was caused by opening the file in `w+` mode rather than `w+b` for handling binary|Try with `w+b` instead|
+|Save game - saving to file 2| As stated above| As stated in "whats supposed to happen"|N/A|
+|Save game - user selects a file that already exits| Ask user if they want to overwrite if they say yes then save| As stated in "whats supposed to happen"| N/A|
+|Save game - user cancels without selecting file| File explorer closes and progam stops trying to save|Program crashes with `No such file or directory ''`|Program checks for blank string and if there is one returns false, if there is an exception an error is raise but program doesnt crash|

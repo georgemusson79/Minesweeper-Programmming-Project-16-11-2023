@@ -54,7 +54,9 @@ def main():
                         gameState.setGameState(GameStates.MAIN_GAME)
                     except Exception as e:
                         print(e)
-
+            case GameStates.LOAD_FILE:
+                mainGame.loadBoardFromFile()
+                gameState.setGameState(GameStates.MAIN_GAME)
 
    
         for event in pygame.event.get():
