@@ -55,8 +55,11 @@ def main():
                     except Exception as e:
                         print(e)
             case GameStates.LOAD_FILE:
-                mainGame.loadBoardFromFile()
-                gameState.setGameState(GameStates.MAIN_GAME)
+                #attempt to load file and play game otherwise return to main menu
+                if mainGame.loadBoardFromFile():
+                    gameState.setGameState(GameStates.MAIN_GAME)
+                else:
+                    gameState.setGameState(GameStates.MAIN_MENU)
 
    
         for event in pygame.event.get():

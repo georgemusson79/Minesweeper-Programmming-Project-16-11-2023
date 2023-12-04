@@ -281,25 +281,30 @@ class MainGame:
                 pickle.dump(data,file)
             return True
         except:
-            print("unable to save the file!")
+            print("Unable to save the file!")
             return False
 
     def loadBoardFromFile(self):
         #loads file by get user to select file from file explorer and passing data from file to attributes
         #returns true on success otherwise returns false
-        path=filedialog.askopenfilename(defaultextension=".save",filetypes=[("Minesweeper Save",".save")])
-        if path=="":
+        try: 
+            path=filedialog.askopenfilename(defaultextension=".save",filetypes=[("Minesweeper Save",".save")])
+            if path=="":
+                return False
+            with open(path,"rb") as file:
+                data=pickle.load(file)
+                self.board=data["board"]
+                dims=data["dims"]
+                self.setBoardDims(dims.x,dims.y,dims.w,dims.h)
+                self.boardW=data["width"]
+                self.boardH=data["height"]
+                self.mineCount=data["mineCount"]
+                self.flagCounter=data["flagCount"]
+                self.boardGenerated=True
+                return True
+        except:
+            print("Unable to load the file!")
             return False
-        with open(path,"rb") as file:
-            data=pickle.load(file)
-            self.board=data["board"]
-            dims=data["dims"]
-            self.setBoardDims(dims.x,dims.y,dims.w,dims.h)
-            self.boardW=data["width"]
-            self.boardH=data["height"]
-            self.mineCount=data["mineCount"]
-            self.flagCounter=data["flagCount"]
-            self.boardGenerated=True
 
          
 
