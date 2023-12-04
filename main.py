@@ -44,7 +44,7 @@ def main():
 
     pygame.init()
     running=True
-    surface=pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT),vsync=True)
+    surface=pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
     print(WINDOW_WIDTH,WINDOW_HEIGHT)
     gameState.setGameState(GameStates.MAIN_MENU)
     print(pygame.get_error())
@@ -56,6 +56,7 @@ def main():
 
         
         #main game loop
+        starttime=time.time()
         surface.fill((0,0,0)) #clear the screen
         gState=gameState.getGameState()
         match gState:
@@ -89,6 +90,10 @@ def main():
             if event.type==pygame.QUIT:
                 running=False
         pygame.display.update()
+        #limit fps to 60
+        while time.time()-starttime<1/60:
+            pass
+
 
 
 if __name__=="__main__":
