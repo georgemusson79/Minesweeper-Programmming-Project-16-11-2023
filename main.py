@@ -82,6 +82,7 @@ def main():
                 #attempt to load file and play game otherwise return to main menu
                 if mainGame.loadBoardFromFile():
                     gameState.setGameState(GameStates.MAIN_GAME)
+                    time.sleep(1)
                 else:
                     gameState.setGameState(GameStates.MAIN_MENU)
 

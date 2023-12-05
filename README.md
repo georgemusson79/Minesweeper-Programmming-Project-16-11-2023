@@ -142,7 +142,7 @@ The Aim of this project is to:
 |Load file - user attempts to load a saved file| State is loaded and program continues into main game with the loaded boar| As stated in "what is supposed to happen"| Test invalid/no file selected|
 |Load file - the user cancels before selecting a file| No error is outputted and program returns to main menu| As stated in "what is supposed to happen"| Test invalid files|
 |Load file - user loads a .save file that doesnt contain the correct data| Error outputted saying "Unable to load the file!" to console and program returns to main menu| As stated in "what is supposed to happen"| Save/load functionality is complete - All criteria met, program is complete|
-
+|User has opened some of the board and placed a few flags down then saves in a new file and loads| Game loads save correctly| Game freezes when trying to left click| Normally the game places mines after the users first turn, which is identified with openCount, openCount wasnt being saved to the file so when the user would load up the file the game would think it's the player's first move even when it wasnt causing a freeze, this has been fixed by passing openCount into the file|
 #### <u>MainGame class - flag counter</u>
 | What is Being Tested | What is supposed to happen | What did Happen | What to do now |
 |----------------------|----------------------------|-----------------|----------------| 

@@ -291,7 +291,7 @@ class MainGame:
             if path=="":
                 return False
             with open(path,"w+b") as file:
-                data={"board":self.board,"width":self.boardW,"height":self.boardH,"mineCount":self.mineCount,"flagCount":self.flagCounter}
+                data={"board":self.board,"width":self.boardW,"height":self.boardH,"mineCount":self.mineCount,"flagCount":self.flagCounter,"openCount":self.openCount}
                 pickle.dump(data,file)
             return True
         except:
@@ -320,7 +320,10 @@ class MainGame:
                 self.boardH=data["height"]
                 self.mineCount=data["mineCount"]
                 self.flagCounter=data["flagCount"]
+                self.openCount=data["openCount"]
                 self.setBoardDims(boardX,0,boardWidth,boardWidth)
+                self.gameOver=False
+                self.lose=False
                 self.boardGenerated=True
                 return True
         except Exception as e:
