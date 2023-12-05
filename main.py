@@ -41,8 +41,9 @@ def main():
 
       
        
-
+    #initialise variables
     pygame.init()
+    pygame.display.set_caption("Minesweeper")
     running=True
     surface=pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
     print(WINDOW_WIDTH,WINDOW_HEIGHT)
@@ -88,9 +89,11 @@ def main():
 
    
         for event in pygame.event.get():
+            #handle user input
             if event.type==pygame.QUIT:
+                #check if user has pressed x button
                 running=False
-        pygame.display.update()
+        pygame.display.update() #render to screen
         #limit fps to 60
         while time.time()-starttime<1/60:
             pass

@@ -34,9 +34,11 @@ class MainGame:
     flagCountLabel:Label
 
     def resign(self):
+        #runs when user presses quit button, triggers losing game over screen
         self.gameOver=True
         self.lose=True
     def exit(self):
+        #return to main menu
         self.reset()
         gameState.setGameState(gameState.GameStates.MAIN_MENU)
         
