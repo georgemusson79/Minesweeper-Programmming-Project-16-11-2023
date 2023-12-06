@@ -62,6 +62,9 @@ The Aim of this project is to:
 - Label allows for rendering text to the screen
 ![TextField](use%20case%20diagrams/TextfieldDiagram.png)
 - TextField allows user to input text
+![MainGame](use%20case%20diagrams/MainGameDiagram.png)
+![Game over Screen](use%20case%20diagrams/GameOverOverlay.png)
+
 ## Implementation
 ### Testing
 #### <u>Button class</u>

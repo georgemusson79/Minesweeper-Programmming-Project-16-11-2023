@@ -1,4 +1,3 @@
-from cProfile import label
 import pygame
 import consts
 from label import Label
