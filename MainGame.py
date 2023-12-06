@@ -1,4 +1,5 @@
 from cgitb import reset
+import math
 import pygame
 import time
 from button import Button
@@ -243,8 +244,8 @@ class MainGame:
 
     def renderBoard(self):
         #renders the board to the screen, uses self.renderDims to get dimensions for rendering the board
-        tileWidth=int(self.boardDims.w/self.boardW) #get width and height of each individual tile in pixels
-        tileHeight=int(self.boardDims.h/self.boardH) #has to be converted to ints otherwise leaves small gaps on the board
+        tileWidth=self.boardDims.w/self.boardW #get width and height of each individual tile in pixels
+        tileHeight=self.boardDims.h/self.boardH #has to be converted to ints otherwise leaves small gaps on the board
 
         color=(255,255,255)
 
@@ -252,7 +253,7 @@ class MainGame:
             for y in range(self.boardH):
                 xPos=(x*tileWidth)+self.boardDims.x
                 yPos=(y*tileHeight)+self.boardDims.y
-                r=pygame.Rect(xPos,yPos,tileWidth,tileHeight) #tile rendering rectangle
+                r=pygame.Rect(xPos,yPos,math.ceil(tileWidth),math.ceil(tileHeight)) #tile rendering rectangle, tileWidth and height are rounded up to fill in any gaps between tiles from position being rounded down
 
                 #make checkerboard pattern
                 if x%2==0:

@@ -72,7 +72,9 @@ def main():
                         margin=WINDOW_WIDTH/10 #distance between the edges of the board on the x axis and edge of the screen
                         boardX=margin
                         boardWidth=WINDOW_WIDTH-(2*margin)
-                        mainGame.generateBoard(gameSetup.boardWidth,gameSetup.boardHeight,gameSetup.mineCount,pygame.Rect(boardX,0,boardWidth,boardWidth)) #board is a square
+                        dims=pygame.Rect(boardX,0,boardWidth,boardWidth)
+                   
+                        mainGame.generateBoard(gameSetup.boardWidth,gameSetup.boardHeight,gameSetup.mineCount,dims) #board is a square
                         time.sleep(1)
                         gameState.setGameState(GameStates.MAIN_GAME)
                     except Exception as e:
