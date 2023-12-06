@@ -46,9 +46,7 @@ def main():
     pygame.display.set_caption("Minesweeper")
     running=True
     surface=pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
-    print(WINDOW_WIDTH,WINDOW_HEIGHT)
     gameState.setGameState(GameStates.MAIN_MENU)
-    print(pygame.get_error())
     mainMenu=MainMenu(surface)
     mainGame=MainGame(surface)
     gameSetup=GameSetup(surface)
