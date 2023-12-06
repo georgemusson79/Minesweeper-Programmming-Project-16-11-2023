@@ -48,7 +48,13 @@ The Aim of this project is to:
 - The loop function to be called is determined by the gameState variable
 - These classes should be independent from each other, if they need to share data, the data should be moved to a shared globals.py file, such as gamestate
 
+#### <u> Main menu flowchart</u>
+![Main menu flowchart](use%20case%20diagrams/mainMenuLoop.png)
+- This could also be applied to GameOverOverlay as they are both menus
 
+#### <u>Main Game flowchart</u>
+![Main menu flowchart](use%20case%20diagrams/MainGameLoop.png)
+- Initialise game over creates a GameOverOverlay object who's update function is called every frame, this renders a menu telling the user they lost/won and gives the option to quit/try again
 
 ### Class Diagrams
 
