@@ -23,8 +23,6 @@ class MainGame:
     boardH=0 #represents number of tiles on the board on the y axis
     boardDims=pygame.Rect(0,0,0,0)
     surface=None
-    clickCoolDownMaxTime=10 #variables to allow for clicking only after 10 frames have passed since last click
-    clickCoolDownTimePassed=0
     font=None #font for rendering numbers to screen
     openCount=0
     gameOver=False
@@ -33,6 +31,7 @@ class MainGame:
     buttons=[]
     gameOverScreen=None
     flagCountLabel:Label
+    prevClick=None
 
     def resign(self):
         #runs when user presses quit button, triggers losing game over screen
@@ -141,7 +140,7 @@ class MainGame:
         boardX=int((x-self.boardDims.x)/tileWidth)
         boardY=int((y-self.boardDims.y)/tileHeight)
         
-        if self.isOnBoard(boardX,boardY) and self.clickCoolDownTimePassed>self.clickCoolDownMaxTime:
+        if self.isOnBoard(boardX,boardY) and btn!=self.prevClick: #used to check if the mouse button has been lifted before making a move
             if btn[0]: #if leftclick and no flag has been placed
                 if self.openCount==0:
                     #if this is the users first left click scatter mines on all tiles except selected one
@@ -150,7 +149,6 @@ class MainGame:
                     self.scatterMines()
                     self.board[boardX][boardY].isOpen=False
                 self.openTile(boardX,boardY)   
-                self.clickCoolDownTimePassed=0
                 self.openCount+=1
 
                 if self.checkForWin():
@@ -166,13 +164,12 @@ class MainGame:
                 else:
                     self.flagCounter-=1
                 self.board[boardX][boardY].isFlagged= not self.board[boardX][boardY].isFlagged #if flagged becomes not flagged and vice versa
-                self.clickCoolDownTimePassed=0
                 
                 if self.checkForWin():
                     #if user has discovered all mines without activating any of them and placed all flags initiate game over by winning
                     self.gameOver=True
                     self.lose=False
-        self.clickCoolDownTimePassed+=1
+        self.prevClick=btn #updates last state of mouse
 
        
         
