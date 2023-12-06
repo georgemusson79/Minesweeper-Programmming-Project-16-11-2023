@@ -40,7 +40,7 @@ The Aim of this project is to:
 
 ## Design
 
-### Use Case Diagrams
+### Flow charts of how important parts work
 #### <u>Main Loop</u>
 ![Main Loop](use%20case%20diagrams/mainLoop.png)
 - Main Loop diagram showing the control flow of the game
