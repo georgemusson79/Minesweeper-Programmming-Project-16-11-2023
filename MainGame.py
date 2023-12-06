@@ -69,12 +69,15 @@ class MainGame:
 
     def checkForWin(self):
         #checks every tile to see if its not a mine and not open, if so returns false
-        #otherwise it can be assumed that all tiles without mines have been opened and so all mines have been found so returns true
+        #otherwise it can be assumed that all tiles without mines have been opened and so all mines have been found so returns true assuming all flags have been placed
         for x in range(0,self.boardW):
             for y in range(0,self.boardH):
                 if not self.board[x][y].isMine and not self.board[x][y].isOpen:
                     return False
-        return True
+        if self.flagCounter==0:
+            return True
+        else:
+            return False
 
     def openTile(self,x,y):
         #sets tile at x,y position to isOpen if it exists
@@ -130,8 +133,8 @@ class MainGame:
         #returns void
         x,y=pygame.mouse.get_pos()
         btn=pygame.mouse.get_pressed()
-        tileWidth=int(self.boardDims.w/self.boardW) #get width and height of each individual tile in pixels
-        tileHeight=int(self.boardDims.h/self.boardH)
+        tileWidth=self.boardDims.w/self.boardW #get width and height of each individual tile in pixels
+        tileHeight=self.boardDims.h/self.boardH
 
         #boardX and boardY represent the tile that the mouse is currently hovering over starting from 0
         #e.g. the tile on the first row and first column would be 0 0, the tile on the first row, second column would be 1 0 etc
@@ -151,7 +154,7 @@ class MainGame:
                 self.openCount+=1
 
                 if self.checkForWin():
-                    #if user has discovered all mines without activating any of them initiate game over by winning
+                    #if user has discovered all mines without activating any of them and placed all flags initiate game over by winning
                     self.gameOver=True
                     self.lose=False
                 
@@ -164,7 +167,13 @@ class MainGame:
                     self.flagCounter-=1
                 self.board[boardX][boardY].isFlagged= not self.board[boardX][boardY].isFlagged #if flagged becomes not flagged and vice versa
                 self.clickCoolDownTimePassed=0
+                
+                if self.checkForWin():
+                    #if user has discovered all mines without activating any of them and placed all flags initiate game over by winning
+                    self.gameOver=True
+                    self.lose=False
         self.clickCoolDownTimePassed+=1
+
        
         
 
