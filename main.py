@@ -23,7 +23,7 @@ def main():
 
     #command line args can be passed to resize window, first arg is width and height
     args=sys.argv
-    if len(args)==2:
+    if len(args)==2: #if there is 1 argument passed use it to set the resolution
         try:
             global WINDOW_WIDTH
             WINDOW_WIDTH=int(args[1])

@@ -3,6 +3,10 @@
 ## Description
 The Aim of this project is to:
 - Make a clone of the game "MineSweeper", which will allow the user to save and load the state of their game as well as let them set the dimensions of the board and mine count.
+- MineSweeper is a game where the user is given a board with randomly placed mines, when they click on a tile it will reveal the number of mines adjacent to it, they must use this information to find the other mines, if they click on a tile that is a mine they lose, they can use flags to indicate where the mines are, once they discover all mines they win
+- Use left click to open a tile
+- Use right click to put a flag on a tile
+- A flagged tile cant be opened but the flag can be removed by right clicking on it again
 
 ## Criteria
 - Make a clone of the game "MineSweeper" in python, using the GUI library PyGame
