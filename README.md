@@ -60,20 +60,8 @@ The Aim of this project is to:
 ![Main menu flowchart](use%20case%20diagrams/MainGameLoop.png)
 - Initialise game over creates a GameOverOverlay object who's update function is called every frame, this renders a menu telling the user they lost/won and gives the option to quit/try again
 
-### Class Diagrams
-
-![Main Menu](use%20case%20diagrams/MainMenuDiagram.png)
-- Main menu is the first state of the game and allows the user to play and load a game
-![Button](use%20case%20diagrams/ButtonDiagram.png)
-- Button provides pictures for the user to click on which will run a function
-![GameSetup](use%20case%20diagrams/GameSetupDiagram.png)
-- GameSetup allows for the user to set the attributes for the game board
-![Label](use%20case%20diagrams/LabelDiagram.png)
-- Label allows for rendering text to the screen
-![TextField](use%20case%20diagrams/TextfieldDiagram.png)
-- TextField allows user to input text
-![MainGame](use%20case%20diagrams/MainGameDiagram.png)
-![Game over Screen](use%20case%20diagrams/GameOverOverlay.png)
+### Class Diagram
+![Relationship between classes](use%20case%20diagrams/relationshipDiagram.png)
 
 ## Implementation
 ### Testing
