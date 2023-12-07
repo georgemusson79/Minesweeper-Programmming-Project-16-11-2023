@@ -8,6 +8,7 @@ from label import Label
 from BoardException import BoardException
 import random
 import consts
+import os
 from gameOverOverlay import GameOverOverlay
 import gameState
 from tkinter import filedialog
@@ -297,13 +298,18 @@ class MainGame:
         #on success returns true otherwise returns false
         try:
             path=filedialog.asksaveasfilename(confirmoverwrite=True,defaultextension=".save",filetypes=[("Minesweeper Save",".save")])
+            path,ext=os.path.splitext(path)
+            if ext!=".save": #handle if the user has tried to put a different extension and add .save
+                path=path+ext+".save"
+            else:
+                path=path+ext
             if path=="":
                 return False
             with open(path,"w+b") as file:
                 data={"board":self.board,"width":self.boardW,"height":self.boardH,"mineCount":self.mineCount,"flagCount":self.flagCounter,"openCount":self.openCount}
                 pickle.dump(data,file)
             return True
-        except:
+        except Exception as e:
             print("Unable to save the file!")
             return False
 
